@@ -1,30 +1,39 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPosts, setPosts } from '../redux/actions'
+import { setPosts } from '../redux/actions'
 import api from '../utils/api'
+import { Post, PostT } from '../Components/Post'
+import Link from 'next/link'
+
 
 export default function Posts({ posts }) {
     const postList = useSelector((state: any) => state.posts.posts)
     const dispatch = useDispatch()
+    
     useEffect(()=>{
         dispatch(setPosts(posts))
     }, [])
 
+
     return(
         <div>
+            <Link href='/new'>Add post</Link>
             Posts
-            {postList.map(p => {
+            {postList.map((p: PostT) => {
                 return (
-                    <div>{p.title}</div>
+                    <Post post = {p}/>
                 )
             })}
         </div>
     )
 }
 
-Posts.getInitialProps = () => {   
-    const data = api.get('posts').then(response => response.data)
+export async function getStaticProps() {
+    const response = await fetch('https://simple-blog-api.crew.red/posts');
+    const posts = await response.json();
     return {
-        posts: data
+      props: {
+        posts,
+      },
     }
-};
+  }

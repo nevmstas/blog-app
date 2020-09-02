@@ -1,6 +1,12 @@
 import '../styles/globals.css'
 import { useStore } from '../redux/store'
 import { Provider } from 'react-redux'
+import styled from 'styled-components'
+
+const ContentWrapper = styled.div`
+    max-width: 1060px;
+    margin: 0 auto;
+`
 
 function MyApp({ Component, pageProps }) {
 
@@ -8,7 +14,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store = {store}>
-      <Component {...pageProps} />
+      <ContentWrapper>
+        <Component {...pageProps} />
+      </ContentWrapper>
     </Provider>
   )
 }

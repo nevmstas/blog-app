@@ -1,4 +1,14 @@
 import Link from 'next/link'
+import styled from 'styled-components'
+
+
+const PostWrapper = styled.div`
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 20px;
+`
+
 export type PostT = {
     title: string
     body: string
@@ -11,10 +21,11 @@ type PropsType = {
 
 export const Post = ({ post } : PropsType) =>{
     return (
-        <div>
+        <PostWrapper>
             <h2>{post.title}</h2>
+            <hr />
             <p>{post.title}</p>
-            <Link href={'/'+post.id}>Check post</Link>
-        </div>
+            <Link href={'posts/'+ post.id}>Check post</Link>
+        </PostWrapper>
     )
 }

@@ -5,7 +5,6 @@ import api from '../utils/api'
 import { Post, PostT } from '../Components/Post'
 import Link from 'next/link'
 
-
 export default function Posts({ posts }) {
     const postList = useSelector((state: any) => state.posts.posts)
     const dispatch = useDispatch()
@@ -17,11 +16,10 @@ export default function Posts({ posts }) {
 
     return(
         <div>
-            <Link href='/new'>Add post</Link>
-            Posts
+            <Link href='/new'><a>Add post</a></Link>
             {postList.map((p: PostT) => {
                 return (
-                    <Post post = {p}/>
+                    <Post key={p.id} post = {p}/>
                 )
             })}
         </div>

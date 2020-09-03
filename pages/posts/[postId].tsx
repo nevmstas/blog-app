@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { ContentWrapper } from '../posts' 
+import { getPostById } from '../../utils/api'
 export default function Post({ post }){
         return (
             <ContentWrapper>
@@ -11,9 +12,7 @@ export default function Post({ post }){
 }
 
 Post.getInitialProps = async (ctx) => {
-    const response = await fetch('https://simple-blog-api.crew.red/posts/' + ctx.query.postId);
-    const post = await response.json();
-    console.log(post)
+    const post = await getPostById(ctx.query.postId)
     return {
       post
     }

@@ -5,6 +5,8 @@ import api from '../utils/api'
 import { Post, PostT } from '../Components/Post'
 import Link from 'next/link'
 
+import { getAllPosts } from '../utils/api'
+
 import styled from 'styled-components'
 
 export const ContentWrapper = styled.div`
@@ -34,11 +36,10 @@ export default function Posts({ posts }) {
 }
 
 export async function getStaticProps() {
-    const response = await fetch('https://simple-blog-api.crew.red/posts');
-    const posts = await response.json();
+    const posts = await getAllPosts()
     return {
       props: {
-        posts,
-      },
+        posts
+      }
     }
-  }
+}

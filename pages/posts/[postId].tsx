@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
-
+import { ContentWrapper } from '../posts' 
 export default function Post({ post }){
         return (
-            <div>
+            <ContentWrapper>
                 <h1>Post {post.title}</h1>
                 <p>{post.body}</p>
-            </div>
-                    
+            </ContentWrapper>                  
         )
         
 }

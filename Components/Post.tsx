@@ -25,7 +25,7 @@ export const Post = ({ post } : PropsType) =>{
             <h2>{post.title}</h2>
             <hr />
             <p>{post.title}</p>
-            <Link href={'posts/'+ post.id}>Check post</Link>
+            <Link href={'posts/'+ post.id}><a>Check post</a></Link>
         </PostWrapper>
     )
 }

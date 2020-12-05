@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import * as dotenv from "dotenv";
+import { UsersModule } from './users/users.module';
+
+dotenv.config()
+const dbuser = process.env.DB_USER
+const dbpass = process.env.DB_PASS
 
 @Module({
-  imports: [],
+  imports: [UsersModule, MongooseModule.forRoot(`mongodb+srv://${dbuser}:${dbpass}@cluster0.uq4as.mongodb.net/<dbname>?retryWrites=true&w=majority`)],
   controllers: [AppController],
   providers: [AppService],
 })
